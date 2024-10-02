@@ -1,22 +1,25 @@
 services:
   postgres:
     image: postgres:latest
-    container_name: postgres-kursach2
+    container_name: postgres-sa-system
     environment:
-      POSTGRES_PASSWORD: password #TODO: move to env
+      POSTGRES_PASSWORD: password 
     ports:
-      - "5432:5432"
+      - "5432:5432" 
     networks:
       - my-network
+
     volumes:
       - ./db_data/pq_data:/var/lib/postgresql/data
       - ./db_data/pq_logs:/logs:z
       - ./default_db_data/restore.sh:/docker-entrypoint-initdb.d/restore.sh
       - ./default_db_data/dump:/dump/
     restart: always
+
+
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: pgadmin-kursach2
+    container_name: pgadmin-sa-system
     environment:
       PGADMIN_DEFAULT_EMAIL: iqumalwer@google.com
       PGADMIN_DEFAULT_PASSWORD: postgres
@@ -29,3 +32,4 @@ services:
 networks:
   my-network:
     driver: bridge
+
