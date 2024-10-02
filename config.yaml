@@ -1,0 +1,4 @@
+database:
+  database_name: kursach2
+  port: 5432
+  host: 172.18.0.2 #зависит от контейнера
