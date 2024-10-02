@@ -1,6 +1,7 @@
 QT       += core gui sql
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 5):
+QT += widgets
 
 CONFIG += c++17
 
@@ -49,6 +50,8 @@ FORMS += \
     tablewindow.ui \
     tablewindow_customselection.ui
 
+INCLUDEPATH += /usr/lib/yaml-cpp
+LIBS += -lyaml-cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

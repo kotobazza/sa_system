@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QSqlDatabase>
 #include <QPushButton>
+#include <QDebug>
 
 #include "textfield.h"
 #include "datefield.h"
@@ -12,6 +13,7 @@
 #include "booleanfield.h"
 #include "emptyfield.h"
 #include "brokenfield.h"
+
 
 TableWindow_CustomSelection::TableWindow_CustomSelection(TableDescription *descriptor, QWidget *parent) :
     QWidget(parent),
@@ -51,11 +53,12 @@ TableWindow_CustomSelection::TableWindow_CustomSelection(TableDescription *descr
 
     int a = 0;
 
-    columns = descripor->selectDesc->columnsNames.split("' '");
+    columns = descripor->selectDesc->columnsNames.split("' '").toVector();
 
 
 
-    QVector<QString> fieldTypes = descriptor->selectDesc->queryTypes.split(" ");
+
+    QVector<QString> fieldTypes = descriptor->selectDesc->queryTypes.split(" ").toVector();
     this->fieldsTypes = fieldTypes;
 
 

@@ -8,6 +8,7 @@
 #include <QHeaderView>
 #include <QPushButton>
 #include <QSqlError>
+#include <QDebug>
 
 TableWindow::TableWindow(TableDescription* desc, QWidget* parent) :
     QWidget(parent),
@@ -39,7 +40,7 @@ TableWindow::TableWindow(TableDescription* desc, QWidget* parent) :
     }
     ui->tableView->setModel(selectModel);
 
-    columns =  descripor->selectDesc->columnsNames.split("' '");
+    columns =  descripor->selectDesc->columnsNames.split("' '").toVector();
 
     for(int i = 0; i< columns.size(); i++){
         selectModel->setHeaderData(i, Qt::Horizontal, columns[i]);

@@ -16,6 +16,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMessageBox>
+#include <QDebug>
 
 
 
@@ -34,9 +35,9 @@ EditWindow::EditWindow(QueryDescription *desc, QVector<QString> oldData, QWidget
     this->move(this->x() + 100, this->y() + 100);
 
 
-    QVector<QString> fieldTypes = query->queryTypes.split(" ");
+    QVector<QString> fieldTypes = query->queryTypes.split(" ").toVector();
     this->fieldsTypes = fieldTypes;
-    QVector<QString> columns = query->columnsNames.split("' '");
+    QVector<QString> columns = query->columnsNames.split("' '").toVector();
 
     assert(fieldTypes.size() == columns.size());
 
