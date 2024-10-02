@@ -1,15 +1,10 @@
 --
 -- PostgreSQL database cluster dump
 --
-
 SET default_transaction_read_only = off;
 
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
-
---
--- Roles
---
 
 CREATE ROLE admin_group;
 ALTER ROLE admin_group WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB NOLOGIN NOREPLICATION NOBYPASSRLS;
@@ -18,30 +13,10 @@ ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION
 CREATE ROLE user_group;
 ALTER ROLE user_group WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB NOLOGIN NOREPLICATION NOBYPASSRLS;
 
---
--- User Configurations
---
-
-
-
-
-
-
-
-
---
--- Databases
---
-
---
--- Database "template1" dump
---
 
 \connect template1
 
---
--- PostgreSQL database dump
---
+
 
 -- Dumped from database version 17.0 (Debian 17.0-1.pgdg120+1)
 -- Dumped by pg_dump version 17.0 (Debian 17.0-1.pgdg120+1)
@@ -57,10 +32,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- PostgreSQL database dump complete
---
 
 --
 -- Database "kursach2" dump
@@ -85,10 +56,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: kursach2; Type: DATABASE; Schema: -; Owner: postgres
---
-
 CREATE DATABASE kursach2 WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'en_US.utf8';
 
 
@@ -107,10 +74,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- Name: addcarriage(character varying, integer, integer, boolean); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.addcarriage(_trainname character varying, _totalseats integer, _reservedseats integer, _carriagestate boolean, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -132,10 +95,6 @@ CREATE FUNCTION public.addcarriage(_trainname character varying, _totalseats int
 
 ALTER FUNCTION public.addcarriage(_trainname character varying, _totalseats integer, _reservedseats integer, _carriagestate boolean, OUT result integer) OWNER TO postgres;
 
---
--- Name: addpassenger(character varying, date, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.addpassenger(_passport character varying, _birthdate date, _firstname character varying, _lastname character varying, _middlename character varying DEFAULT NULL::character varying, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$ 	
@@ -149,9 +108,6 @@ CREATE FUNCTION public.addpassenger(_passport character varying, _birthdate date
 
 ALTER FUNCTION public.addpassenger(_passport character varying, _birthdate date, _firstname character varying, _lastname character varying, _middlename character varying, OUT result integer) OWNER TO postgres;
 
---
--- Name: addroute(character varying, character varying, timestamp without time zone, character varying, timestamp without time zone, character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.addroute(_routenumber character varying, _departurestation character varying, _departuretime timestamp without time zone, _arrivalstation character varying, _arrivaltime timestamp without time zone, _trainname character varying, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -178,9 +134,6 @@ CREATE FUNCTION public.addroute(_routenumber character varying, _departurestatio
 
 ALTER FUNCTION public.addroute(_routenumber character varying, _departurestation character varying, _departuretime timestamp without time zone, _arrivalstation character varying, _arrivaltime timestamp without time zone, _trainname character varying, OUT result integer) OWNER TO postgres;
 
---
--- Name: addstation(character varying, boolean); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.addstation(_stationname character varying, _stationstate boolean, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -195,9 +148,6 @@ CREATE FUNCTION public.addstation(_stationname character varying, _stationstate 
 
 ALTER FUNCTION public.addstation(_stationname character varying, _stationstate boolean, OUT result integer) OWNER TO postgres;
 
---
--- Name: addtarrif(character varying, boolean, integer, text); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.addtarrif(_tarrifname character varying, _animals boolean, _tarrifcost integer, _tarrifdesc text DEFAULT NULL::text, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -212,9 +162,6 @@ CREATE FUNCTION public.addtarrif(_tarrifname character varying, _animals boolean
 
 ALTER FUNCTION public.addtarrif(_tarrifname character varying, _animals boolean, _tarrifcost integer, _tarrifdesc text, OUT result integer) OWNER TO postgres;
 
---
--- Name: addticket(character varying, character varying, character varying, character varying, date); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.addticket(_passport character varying, _routenumber character varying, _tarrifname character varying, _carriagenumber character varying, _reservationdate date, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -268,9 +215,6 @@ CREATE FUNCTION public.addticket(_passport character varying, _routenumber chara
 
 ALTER FUNCTION public.addticket(_passport character varying, _routenumber character varying, _tarrifname character varying, _carriagenumber character varying, _reservationdate date, OUT result integer) OWNER TO postgres;
 
---
--- Name: addtomainshedule(character varying, character varying, timestamp without time zone, character varying, timestamp without time zone, character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.addtomainshedule(routenumber character varying, depstation character varying, deptime timestamp without time zone, arrstation character varying, arrtime timestamp without time zone, trainname character varying) RETURNS void
     LANGUAGE plpgsql
@@ -289,10 +233,6 @@ CREATE FUNCTION public.addtomainshedule(routenumber character varying, depstatio
 
 ALTER FUNCTION public.addtomainshedule(routenumber character varying, depstation character varying, deptime timestamp without time zone, arrstation character varying, arrtime timestamp without time zone, trainname character varying) OWNER TO postgres;
 
---
--- Name: addtrain(character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.addtrain(_trainname character varying, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$
@@ -306,9 +246,6 @@ CREATE FUNCTION public.addtrain(_trainname character varying, OUT result integer
 
 ALTER FUNCTION public.addtrain(_trainname character varying, OUT result integer) OWNER TO postgres;
 
---
--- Name: averagetarrifcost(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.averagetarrifcost() RETURNS TABLE(tarrifname character varying, tarrifcost integer, avgcost integer)
     LANGUAGE plpgsql
@@ -326,9 +263,7 @@ CREATE FUNCTION public.averagetarrifcost() RETURNS TABLE(tarrifname character va
 
 ALTER FUNCTION public.averagetarrifcost() OWNER TO postgres;
 
---
--- Name: birthdaydateandcost(date, date, integer); Type: FUNCTION; Schema: public; Owner: postgres
---
+
 
 CREATE FUNCTION public.birthdaydateandcost(reservdate date, birthdate date, _tarrif integer, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -355,10 +290,6 @@ CREATE FUNCTION public.birthdaydateandcost(reservdate date, birthdate date, _tar
 
 ALTER FUNCTION public.birthdaydateandcost(reservdate date, birthdate date, _tarrif integer, OUT result integer) OWNER TO postgres;
 
---
--- Name: carriagenumberdeterminant(integer); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.carriagenumberdeterminant(carriageid integer) RETURNS character varying
     LANGUAGE plpgsql
     AS $$
@@ -369,10 +300,6 @@ CREATE FUNCTION public.carriagenumberdeterminant(carriageid integer) RETURNS cha
 
 
 ALTER FUNCTION public.carriagenumberdeterminant(carriageid integer) OWNER TO postgres;
-
---
--- Name: checkticketsdelete(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.checkticketsdelete() RETURNS trigger
     LANGUAGE plpgsql
@@ -390,10 +317,6 @@ CREATE FUNCTION public.checkticketsdelete() RETURNS trigger
 
 ALTER FUNCTION public.checkticketsdelete() OWNER TO postgres;
 
---
--- Name: checkticketsinsert(); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.checkticketsinsert() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
@@ -408,10 +331,6 @@ CREATE FUNCTION public.checkticketsinsert() RETURNS trigger
 
 
 ALTER FUNCTION public.checkticketsinsert() OWNER TO postgres;
-
---
--- Name: checkticketsupdate(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.checkticketsupdate() RETURNS trigger
     LANGUAGE plpgsql
@@ -432,10 +351,6 @@ CREATE FUNCTION public.checkticketsupdate() RETURNS trigger
 
 
 ALTER FUNCTION public.checkticketsupdate() OWNER TO postgres;
-
---
--- Name: createroute(character varying, character varying, character varying, character varying, timestamp without time zone, timestamp without time zone); Type: PROCEDURE; Schema: public; Owner: postgres
---
 
 CREATE PROCEDURE public.createroute(IN _routenumber character varying, IN _departurestation character varying, IN _arrivalstation character varying, IN _trainname character varying, IN _departuretime timestamp without time zone, IN _arrivaltime timestamp without time zone)
     LANGUAGE plpgsql
@@ -484,9 +399,6 @@ CREATE PROCEDURE public.createroute(IN _routenumber character varying, IN _depar
 
 ALTER PROCEDURE public.createroute(IN _routenumber character varying, IN _departurestation character varying, IN _arrivalstation character varying, IN _trainname character varying, IN _departuretime timestamp without time zone, IN _arrivaltime timestamp without time zone) OWNER TO postgres;
 
---
--- Name: deletecarriage(integer); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.deletecarriage(_id integer, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -503,10 +415,6 @@ CREATE FUNCTION public.deletecarriage(_id integer, OUT result integer) RETURNS i
 
 ALTER FUNCTION public.deletecarriage(_id integer, OUT result integer) OWNER TO postgres;
 
---
--- Name: deletefrommainshedule(character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.deletefrommainshedule(_oldroute character varying) RETURNS void
     LANGUAGE plpgsql
     AS $$
@@ -517,10 +425,6 @@ CREATE FUNCTION public.deletefrommainshedule(_oldroute character varying) RETURN
 
 
 ALTER FUNCTION public.deletefrommainshedule(_oldroute character varying) OWNER TO postgres;
-
---
--- Name: deletepassenger(integer); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.deletepassenger(_id integer, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -537,10 +441,6 @@ CREATE FUNCTION public.deletepassenger(_id integer, OUT result integer) RETURNS 
 
 ALTER FUNCTION public.deletepassenger(_id integer, OUT result integer) OWNER TO postgres;
 
---
--- Name: deleteroute(integer); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.deleteroute(_id integer, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$
@@ -556,9 +456,6 @@ CREATE FUNCTION public.deleteroute(_id integer, OUT result integer) RETURNS inte
 
 ALTER FUNCTION public.deleteroute(_id integer, OUT result integer) OWNER TO postgres;
 
---
--- Name: deletestation(integer); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.deletestation(_id integer, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -575,9 +472,6 @@ CREATE FUNCTION public.deletestation(_id integer, OUT result integer) RETURNS in
 
 ALTER FUNCTION public.deletestation(_id integer, OUT result integer) OWNER TO postgres;
 
---
--- Name: deletetarrif(integer); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.deletetarrif(_id integer, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -594,10 +488,6 @@ CREATE FUNCTION public.deletetarrif(_id integer, OUT result integer) RETURNS int
 
 ALTER FUNCTION public.deletetarrif(_id integer, OUT result integer) OWNER TO postgres;
 
---
--- Name: deleteticket(integer); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.deleteticket(_id integer, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$
@@ -612,10 +502,6 @@ CREATE FUNCTION public.deleteticket(_id integer, OUT result integer) RETURNS int
 
 
 ALTER FUNCTION public.deleteticket(_id integer, OUT result integer) OWNER TO postgres;
-
---
--- Name: deletetrain(integer); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.deletetrain(_id integer, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -632,9 +518,6 @@ CREATE FUNCTION public.deletetrain(_id integer, OUT result integer) RETURNS inte
 
 ALTER FUNCTION public.deletetrain(_id integer, OUT result integer) OWNER TO postgres;
 
---
--- Name: getactiveservices(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.getactiveservices() RETURNS TABLE("flight_№" character varying, departure_station character varying, departure_time timestamp without time zone, arrival_station character varying, arrival_time timestamp without time zone)
     LANGUAGE plpgsql
@@ -652,10 +535,6 @@ CREATE FUNCTION public.getactiveservices() RETURNS TABLE("flight_№" character 
 
 
 ALTER FUNCTION public.getactiveservices() OWNER TO postgres;
-
---
--- Name: getaverageticketcost(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.getaverageticketcost() RETURNS TABLE(passenger character varying, "flight_№" character varying, carriage character varying, reservationdate date, tarrifcost integer, totalcost integer, averagecost numeric)
     LANGUAGE plpgsql
@@ -676,10 +555,6 @@ CREATE FUNCTION public.getaverageticketcost() RETURNS TABLE(passenger character 
 
 
 ALTER FUNCTION public.getaverageticketcost() OWNER TO postgres;
-
---
--- Name: getcountofticketsforeachpassenger(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.getcountofticketsforeachpassenger() RETURNS TABLE(passport character varying, firstname character varying, lastname character varying, middlename character varying, numberoftickets bigint)
     LANGUAGE plpgsql
@@ -702,10 +577,6 @@ CREATE FUNCTION public.getcountofticketsforeachpassenger() RETURNS TABLE(passpor
 
 ALTER FUNCTION public.getcountofticketsforeachpassenger() OWNER TO postgres;
 
---
--- Name: getemptycarriages(); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.getemptycarriages() RETURNS TABLE(trainname character varying, carriagenumber character varying, reservedseats integer, totalseats integer, difference integer)
     LANGUAGE plpgsql
     AS $$
@@ -723,10 +594,6 @@ CREATE FUNCTION public.getemptycarriages() RETURNS TABLE(trainname character var
 
 
 ALTER FUNCTION public.getemptycarriages() OWNER TO postgres;
-
---
--- Name: getincompletetrains(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.getincompletetrains() RETURNS TABLE(trainname character varying, incompletecarriages bigint, totalcarriages bigint)
     LANGUAGE plpgsql
@@ -747,10 +614,6 @@ CREATE FUNCTION public.getincompletetrains() RETURNS TABLE(trainname character v
 
 
 ALTER FUNCTION public.getincompletetrains() OWNER TO postgres;
-
---
--- Name: indexingticketscost(integer); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.indexingticketscost(percent integer) RETURNS TABLE(ticketid integer, passport character varying, routenumber character varying, tarrifname character varying, totalcost integer, carriagenumber character varying, reservationdate date)
     LANGUAGE plpgsql
@@ -780,9 +643,6 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
---
--- Name: routesshedule; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.routesshedule (
     routeid integer NOT NULL,
@@ -797,9 +657,6 @@ CREATE TABLE public.routesshedule (
 
 ALTER TABLE public.routesshedule OWNER TO postgres;
 
---
--- Name: stations; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.stations (
     stationid integer NOT NULL,
@@ -810,9 +667,6 @@ CREATE TABLE public.stations (
 
 ALTER TABLE public.stations OWNER TO postgres;
 
---
--- Name: trains; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.trains (
     trainid integer NOT NULL,
@@ -822,9 +676,6 @@ CREATE TABLE public.trains (
 
 ALTER TABLE public.trains OWNER TO postgres;
 
---
--- Name: mainshedule; Type: VIEW; Schema: public; Owner: postgres
---
 
 CREATE VIEW public.mainshedule AS
  SELECT routesshedule.routenumber AS "flight_№",
@@ -841,9 +692,6 @@ CREATE VIEW public.mainshedule AS
 
 ALTER VIEW public.mainshedule OWNER TO postgres;
 
---
--- Name: mainshedule_deleter(public.mainshedule); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.mainshedule_deleter(oldtable public.mainshedule) RETURNS void
     LANGUAGE plpgsql
@@ -856,9 +704,6 @@ CREATE FUNCTION public.mainshedule_deleter(oldtable public.mainshedule) RETURNS 
 
 ALTER FUNCTION public.mainshedule_deleter(oldtable public.mainshedule) OWNER TO postgres;
 
---
--- Name: mainshedule_inserter(public.mainshedule); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.mainshedule_inserter(newtable public.mainshedule) RETURNS void
     LANGUAGE plpgsql
@@ -884,9 +729,6 @@ CREATE FUNCTION public.mainshedule_inserter(newtable public.mainshedule) RETURNS
 
 ALTER FUNCTION public.mainshedule_inserter(newtable public.mainshedule) OWNER TO postgres;
 
---
--- Name: mainshedule_updater(public.mainshedule, public.mainshedule); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.mainshedule_updater(oldtable public.mainshedule, newtable public.mainshedule) RETURNS void
     LANGUAGE plpgsql
@@ -916,10 +758,6 @@ CREATE FUNCTION public.mainshedule_updater(oldtable public.mainshedule, newtable
 
 ALTER FUNCTION public.mainshedule_updater(oldtable public.mainshedule, newtable public.mainshedule) OWNER TO postgres;
 
---
--- Name: selectfromcarriages(); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.selectfromcarriages() RETURNS TABLE(carraigeid integer, carriagenumber character varying, train character varying, totalseats integer, reservedseats integer, carriagestate boolean)
     LANGUAGE plpgsql
     AS $$
@@ -939,10 +777,6 @@ CREATE FUNCTION public.selectfromcarriages() RETURNS TABLE(carraigeid integer, c
 
 
 ALTER FUNCTION public.selectfromcarriages() OWNER TO postgres;
-
---
--- Name: selectfromroutesshedule(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.selectfromroutesshedule() RETURNS TABLE(routeid integer, routenumber character varying, departurestation character varying, departuretime timestamp without time zone, arrivalstation character varying, arrivaltime timestamp without time zone, train character varying)
     LANGUAGE plpgsql
@@ -965,10 +799,6 @@ CREATE FUNCTION public.selectfromroutesshedule() RETURNS TABLE(routeid integer, 
 
 
 ALTER FUNCTION public.selectfromroutesshedule() OWNER TO postgres;
-
---
--- Name: selectfromtickets(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.selectfromtickets() RETURNS TABLE(ticketid integer, passport character varying, routenumber character varying, tarrifname character varying, totalcost integer, carriagenumber character varying, reservationdate date)
     LANGUAGE plpgsql
@@ -997,10 +827,6 @@ CREATE FUNCTION public.selectfromtickets() RETURNS TABLE(ticketid integer, passp
 
 ALTER FUNCTION public.selectfromtickets() OWNER TO postgres;
 
---
--- Name: supercost(); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.supercost() RETURNS TABLE(passport character varying, firstname character varying, lastname character varying, middlename character varying, totalcost integer, maxtarrifcost integer)
     LANGUAGE plpgsql
     AS $$
@@ -1022,10 +848,6 @@ CREATE FUNCTION public.supercost() RETURNS TABLE(passport character varying, fir
 
 
 ALTER FUNCTION public.supercost() OWNER TO postgres;
-
---
--- Name: ticketstypes(boolean, integer); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.ticketstypes(_cananimals boolean, _morethan integer) RETURNS TABLE(passengerpassport character varying, tarrifname character varying, routenumber character varying, cananimals boolean, reservedcount bigint, morethan integer)
     LANGUAGE plpgsql
@@ -1055,9 +877,6 @@ CREATE FUNCTION public.ticketstypes(_cananimals boolean, _morethan integer) RETU
 
 ALTER FUNCTION public.ticketstypes(_cananimals boolean, _morethan integer) OWNER TO postgres;
 
---
--- Name: transactioncaller(character varying, character varying, character varying, character varying, timestamp without time zone, timestamp without time zone); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.transactioncaller(_routenumber character varying, _departurestation character varying, _arrivalstation character varying, _trainname character varying, _departuretime timestamp without time zone, _arrivaltime timestamp without time zone, OUT res integer) RETURNS integer
     LANGUAGE plpgsql
@@ -1074,10 +893,6 @@ CREATE FUNCTION public.transactioncaller(_routenumber character varying, _depart
 
 
 ALTER FUNCTION public.transactioncaller(_routenumber character varying, _departurestation character varying, _arrivalstation character varying, _trainname character varying, _departuretime timestamp without time zone, _arrivaltime timestamp without time zone, OUT res integer) OWNER TO postgres;
-
---
--- Name: updatecarriage(integer, character varying, character varying, integer, integer, boolean); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.updatecarriage(_id integer, newcarriagenumber character varying, newtrainname character varying, newtotalseats integer, newreservedseats integer, newstate boolean, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -1104,9 +919,6 @@ CREATE FUNCTION public.updatecarriage(_id integer, newcarriagenumber character v
 
 ALTER FUNCTION public.updatecarriage(_id integer, newcarriagenumber character varying, newtrainname character varying, newtotalseats integer, newreservedseats integer, newstate boolean, OUT result integer) OWNER TO postgres;
 
---
--- Name: updatemainshedule(character varying, character varying, character varying, timestamp without time zone, character varying, timestamp without time zone, character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.updatemainshedule(_oldroute character varying, routenumber character varying, depstation character varying, deptime timestamp without time zone, arrstation character varying, arrtime timestamp without time zone, trainname character varying) RETURNS void
     LANGUAGE plpgsql
@@ -1126,10 +938,6 @@ CREATE FUNCTION public.updatemainshedule(_oldroute character varying, routenumbe
 
 ALTER FUNCTION public.updatemainshedule(_oldroute character varying, routenumber character varying, depstation character varying, deptime timestamp without time zone, arrstation character varying, arrtime timestamp without time zone, trainname character varying) OWNER TO postgres;
 
---
--- Name: updatepassenger(integer, character varying, date, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.updatepassenger(_id integer, newpassport character varying, newbirthdate date, newfirstname character varying, newlastname character varying, newmiddlename character varying DEFAULT NULL::character varying, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$
@@ -1147,9 +955,6 @@ CREATE FUNCTION public.updatepassenger(_id integer, newpassport character varyin
 
 ALTER FUNCTION public.updatepassenger(_id integer, newpassport character varying, newbirthdate date, newfirstname character varying, newlastname character varying, newmiddlename character varying, OUT result integer) OWNER TO postgres;
 
---
--- Name: updateroute(integer, character varying, character varying, timestamp without time zone, character varying, timestamp without time zone, character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.updateroute(_id integer, newroutenumber character varying, newdeparturestation character varying, newdeparturetime timestamp without time zone, newarrivalstation character varying, newarrivaltime timestamp without time zone, newtrain character varying, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -1182,10 +987,6 @@ CREATE FUNCTION public.updateroute(_id integer, newroutenumber character varying
 
 ALTER FUNCTION public.updateroute(_id integer, newroutenumber character varying, newdeparturestation character varying, newdeparturetime timestamp without time zone, newarrivalstation character varying, newarrivaltime timestamp without time zone, newtrain character varying, OUT result integer) OWNER TO postgres;
 
---
--- Name: updatestation(integer, character varying, boolean); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.updatestation(_id integer, newstationname character varying, newstationstate boolean, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$
@@ -1200,9 +1001,6 @@ CREATE FUNCTION public.updatestation(_id integer, newstationname character varyi
 
 ALTER FUNCTION public.updatestation(_id integer, newstationname character varying, newstationstate boolean, OUT result integer) OWNER TO postgres;
 
---
--- Name: updatetarrif(integer, character varying, boolean, integer, text); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.updatetarrif(_id integer, newtarrifname character varying, newcananimals boolean, newtarrifcost integer, newtarrifdesc text DEFAULT NULL::text, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -1220,9 +1018,6 @@ CREATE FUNCTION public.updatetarrif(_id integer, newtarrifname character varying
 
 ALTER FUNCTION public.updatetarrif(_id integer, newtarrifname character varying, newcananimals boolean, newtarrifcost integer, newtarrifdesc text, OUT result integer) OWNER TO postgres;
 
---
--- Name: updateticket(integer, character varying, character varying, character varying, character varying, date); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION public.updateticket(_id integer, newpassport character varying, newroutenumber character varying, newtarrifname character varying, newcarriagenumber character varying, newreservationdate date, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
@@ -1267,10 +1062,6 @@ CREATE FUNCTION public.updateticket(_id integer, newpassport character varying, 
 
 ALTER FUNCTION public.updateticket(_id integer, newpassport character varying, newroutenumber character varying, newtarrifname character varying, newcarriagenumber character varying, newreservationdate date, OUT result integer) OWNER TO postgres;
 
---
--- Name: updatetrain(integer, character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
-
 CREATE FUNCTION public.updatetrain(_id integer, newtrainname character varying, OUT result integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$
@@ -1284,10 +1075,6 @@ CREATE FUNCTION public.updatetrain(_id integer, newtrainname character varying, 
 
 ALTER FUNCTION public.updatetrain(_id integer, newtrainname character varying, OUT result integer) OWNER TO postgres;
 
---
--- Name: carriages; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE public.carriages (
     carriageid integer NOT NULL,
     carriagenumber character varying(10) NOT NULL,
@@ -1300,9 +1087,6 @@ CREATE TABLE public.carriages (
 
 ALTER TABLE public.carriages OWNER TO postgres;
 
---
--- Name: availableroutes; Type: VIEW; Schema: public; Owner: postgres
---
 
 CREATE VIEW public.availableroutes AS
  SELECT
@@ -1327,9 +1111,6 @@ CREATE VIEW public.availableroutes AS
 
 ALTER VIEW public.availableroutes OWNER TO postgres;
 
---
--- Name: carriages_carriageid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
 
 CREATE SEQUENCE public.carriages_carriageid_seq
     AS integer
@@ -1342,16 +1123,9 @@ CREATE SEQUENCE public.carriages_carriageid_seq
 
 ALTER SEQUENCE public.carriages_carriageid_seq OWNER TO postgres;
 
---
--- Name: carriages_carriageid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
 
 ALTER SEQUENCE public.carriages_carriageid_seq OWNED BY public.carriages.carriageid;
 
-
---
--- Name: passengers; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.passengers (
     passengerid integer NOT NULL,
@@ -1365,10 +1139,6 @@ CREATE TABLE public.passengers (
 
 ALTER TABLE public.passengers OWNER TO postgres;
 
---
--- Name: passengers_passengerid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
 CREATE SEQUENCE public.passengers_passengerid_seq
     AS integer
     START WITH 1
@@ -1380,16 +1150,8 @@ CREATE SEQUENCE public.passengers_passengerid_seq
 
 ALTER SEQUENCE public.passengers_passengerid_seq OWNER TO postgres;
 
---
--- Name: passengers_passengerid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
 
 ALTER SEQUENCE public.passengers_passengerid_seq OWNED BY public.passengers.passengerid;
-
-
---
--- Name: routesshedule_routeid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
 
 CREATE SEQUENCE public.routesshedule_routeid_seq
     AS integer
@@ -1402,16 +1164,9 @@ CREATE SEQUENCE public.routesshedule_routeid_seq
 
 ALTER SEQUENCE public.routesshedule_routeid_seq OWNER TO postgres;
 
---
--- Name: routesshedule_routeid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
 
 ALTER SEQUENCE public.routesshedule_routeid_seq OWNED BY public.routesshedule.routeid;
 
-
---
--- Name: stations_stationid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
 
 CREATE SEQUENCE public.stations_stationid_seq
     AS integer
@@ -1424,16 +1179,7 @@ CREATE SEQUENCE public.stations_stationid_seq
 
 ALTER SEQUENCE public.stations_stationid_seq OWNER TO postgres;
 
---
--- Name: stations_stationid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
 ALTER SEQUENCE public.stations_stationid_seq OWNED BY public.stations.stationid;
-
-
---
--- Name: tarrif; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.tarrif (
     tarrifid integer NOT NULL,
@@ -1447,10 +1193,6 @@ CREATE TABLE public.tarrif (
 
 ALTER TABLE public.tarrif OWNER TO postgres;
 
---
--- Name: tarrif_tarrifid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
 CREATE SEQUENCE public.tarrif_tarrifid_seq
     AS integer
     START WITH 1
@@ -1462,16 +1204,7 @@ CREATE SEQUENCE public.tarrif_tarrifid_seq
 
 ALTER SEQUENCE public.tarrif_tarrifid_seq OWNER TO postgres;
 
---
--- Name: tarrif_tarrifid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
 ALTER SEQUENCE public.tarrif_tarrifid_seq OWNED BY public.tarrif.tarrifid;
-
-
---
--- Name: tickets; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.tickets (
     ticketid integer NOT NULL,
@@ -1487,10 +1220,6 @@ CREATE TABLE public.tickets (
 
 ALTER TABLE public.tickets OWNER TO postgres;
 
---
--- Name: tickets_ticketid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
 CREATE SEQUENCE public.tickets_ticketid_seq
     AS integer
     START WITH 1
@@ -1502,16 +1231,8 @@ CREATE SEQUENCE public.tickets_ticketid_seq
 
 ALTER SEQUENCE public.tickets_ticketid_seq OWNER TO postgres;
 
---
--- Name: tickets_ticketid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
 ALTER SEQUENCE public.tickets_ticketid_seq OWNED BY public.tickets.ticketid;
 
-
---
--- Name: trains_trainid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
 
 CREATE SEQUENCE public.trains_trainid_seq
     AS integer
@@ -1524,65 +1245,22 @@ CREATE SEQUENCE public.trains_trainid_seq
 
 ALTER SEQUENCE public.trains_trainid_seq OWNER TO postgres;
 
---
--- Name: trains_trainid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
 ALTER SEQUENCE public.trains_trainid_seq OWNED BY public.trains.trainid;
-
-
---
--- Name: carriages carriageid; Type: DEFAULT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.carriages ALTER COLUMN carriageid SET DEFAULT nextval('public.carriages_carriageid_seq'::regclass);
 
-
---
--- Name: passengers passengerid; Type: DEFAULT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.passengers ALTER COLUMN passengerid SET DEFAULT nextval('public.passengers_passengerid_seq'::regclass);
-
-
---
--- Name: routesshedule routeid; Type: DEFAULT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.routesshedule ALTER COLUMN routeid SET DEFAULT nextval('public.routesshedule_routeid_seq'::regclass);
 
-
---
--- Name: stations stationid; Type: DEFAULT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.stations ALTER COLUMN stationid SET DEFAULT nextval('public.stations_stationid_seq'::regclass);
-
-
---
--- Name: tarrif tarrifid; Type: DEFAULT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.tarrif ALTER COLUMN tarrifid SET DEFAULT nextval('public.tarrif_tarrifid_seq'::regclass);
 
-
---
--- Name: tickets ticketid; Type: DEFAULT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.tickets ALTER COLUMN ticketid SET DEFAULT nextval('public.tickets_ticketid_seq'::regclass);
-
-
---
--- Name: trains trainid; Type: DEFAULT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.trains ALTER COLUMN trainid SET DEFAULT nextval('public.trains_trainid_seq'::regclass);
 
-
---
--- Data for Name: carriages; Type: TABLE DATA; Schema: public; Owner: postgres
---
 
 COPY public.carriages (carriageid, carriagenumber, reservedseats, totalseats, train, carriagestate) FROM stdin;
 2	CARR2	0	110	1	t
@@ -1590,11 +1268,6 @@ COPY public.carriages (carriageid, carriagenumber, reservedseats, totalseats, tr
 3	CARR3	2	150	3	t
 1	CARR1	1	100	1	t
 \.
-
-
---
--- Data for Name: passengers; Type: TABLE DATA; Schema: public; Owner: postgres
---
 
 COPY public.passengers (passengerid, firstname, lastname, middlename, passport, birthdate) FROM stdin;
 1	Евгений	Чичик	Андреевич	1234567890	2000-01-01
@@ -1604,11 +1277,6 @@ COPY public.passengers (passengerid, firstname, lastname, middlename, passport, 
 5	Дмитрий	Кульков	Александрович	1234567894	2000-01-01
 \.
 
-
---
--- Data for Name: routesshedule; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
 COPY public.routesshedule (routeid, routenumber, departurestation, arrivalstation, train, departuretime, arrivaltime) FROM stdin;
 2	Z1	2	1	3	2020-01-01 00:00:00	2023-01-01 00:00:00
 1	A1	1	2	1	2000-01-01 00:00:00	2010-01-01 00:00:00
@@ -1616,10 +1284,6 @@ COPY public.routesshedule (routeid, routenumber, departurestation, arrivalstatio
 11	B110	1	15	10	2000-01-01 00:00:00	2000-01-01 00:00:00
 \.
 
-
---
--- Data for Name: stations; Type: TABLE DATA; Schema: public; Owner: postgres
---
 
 COPY public.stations (stationid, stationname, stationstate) FROM stdin;
 1	Москва	t
@@ -1629,21 +1293,11 @@ COPY public.stations (stationid, stationname, stationstate) FROM stdin;
 19	Алматы	t
 \.
 
-
---
--- Data for Name: tarrif; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
 COPY public.tarrif (tarrifid, tarrifname, tarrifanimals, tarrifcost, tarrifdesc) FROM stdin;
 1	Первый	t	1000	Первый тариф, можно с животными
 2	Второй	f	1250	Второй тариф, без животных
 3	Третий	f	1234567	Просто... Золотой
 \.
-
-
---
--- Data for Name: tickets; Type: TABLE DATA; Schema: public; Owner: postgres
---
 
 COPY public.tickets (ticketid, passenger, route, tarrif, totalcost, carriage, reservationdate) FROM stdin;
 1	1	2	1	8000	3	2010-01-01
@@ -1651,406 +1305,157 @@ COPY public.tickets (ticketid, passenger, route, tarrif, totalcost, carriage, re
 3	3	1	1	2000	1	2000-01-01
 \.
 
-
---
--- Data for Name: trains; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
 COPY public.trains (trainid, trainname) FROM stdin;
 1	TRA1
 3	TRA2
 10	TRA100
 \.
 
-
---
--- Name: carriages_carriageid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
 SELECT pg_catalog.setval('public.carriages_carriageid_seq', 4, true);
-
-
---
--- Name: passengers_passengerid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
 
 SELECT pg_catalog.setval('public.passengers_passengerid_seq', 5, true);
 
-
---
--- Name: routesshedule_routeid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
 SELECT pg_catalog.setval('public.routesshedule_routeid_seq', 11, true);
 
-
---
--- Name: stations_stationid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
 SELECT pg_catalog.setval('public.stations_stationid_seq', 19, true);
-
-
---
--- Name: tarrif_tarrifid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
 
 SELECT pg_catalog.setval('public.tarrif_tarrifid_seq', 3, true);
 
 
---
--- Name: tickets_ticketid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
 SELECT pg_catalog.setval('public.tickets_ticketid_seq', 3, true);
-
-
---
--- Name: trains_trainid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
 
 SELECT pg_catalog.setval('public.trains_trainid_seq', 11, true);
 
-
---
--- Name: carriages carriages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.carriages
     ADD CONSTRAINT carriages_pkey PRIMARY KEY (carriageid);
 
 
---
--- Name: passengers passengers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.passengers
     ADD CONSTRAINT passengers_pkey PRIMARY KEY (passengerid);
 
-
---
--- Name: routesshedule routesshedule_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.routesshedule
     ADD CONSTRAINT routesshedule_pkey PRIMARY KEY (routeid);
-
-
---
--- Name: stations stations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.stations
     ADD CONSTRAINT stations_pkey PRIMARY KEY (stationid);
 
 
---
--- Name: tarrif tarrif_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.tarrif
     ADD CONSTRAINT tarrif_pkey PRIMARY KEY (tarrifid);
 
-
---
--- Name: tickets tickets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.tickets
     ADD CONSTRAINT tickets_pkey PRIMARY KEY (ticketid);
 
 
---
--- Name: trains trains_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.trains
     ADD CONSTRAINT trains_pkey PRIMARY KEY (trainid);
 
-
---
--- Name: carriages uq_carriagenumber; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.carriages
     ADD CONSTRAINT uq_carriagenumber UNIQUE (carriagenumber);
 
 
---
--- Name: passengers uq_passport; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.passengers
     ADD CONSTRAINT uq_passport UNIQUE (passport);
 
-
---
--- Name: routesshedule uq_routenumber; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.routesshedule
     ADD CONSTRAINT uq_routenumber UNIQUE (routenumber);
 
 
---
--- Name: stations uq_stationname; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.stations
     ADD CONSTRAINT uq_stationname UNIQUE (stationname);
-
-
---
--- Name: trains uq_trainname; Type: CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.trains
     ADD CONSTRAINT uq_trainname UNIQUE (trainname);
 
-
---
--- Name: idx_reservedtime; Type: INDEX; Schema: public; Owner: postgres
---
-
 CREATE INDEX idx_reservedtime ON public.tickets USING brin (reservationdate);
 
 
---
--- Name: idx_routesshedule; Type: INDEX; Schema: public; Owner: postgres
---
-
 CREATE INDEX idx_routesshedule ON public.routesshedule USING btree (routeid);
 
-
---
--- Name: idx_stations; Type: INDEX; Schema: public; Owner: postgres
---
-
 CREATE INDEX idx_stations ON public.stations USING hash (stationname);
-
-
---
--- Name: mainshedule delete_mainshedule; Type: RULE; Schema: public; Owner: postgres
---
 
 CREATE RULE delete_mainshedule AS
     ON DELETE TO public.mainshedule DO INSTEAD  SELECT public.mainshedule_deleter(old.*) AS mainshedule_deleter;
 
-
---
--- Name: mainshedule insert_mainshedule; Type: RULE; Schema: public; Owner: postgres
---
-
 CREATE RULE insert_mainshedule AS
     ON INSERT TO public.mainshedule DO INSTEAD  SELECT public.mainshedule_inserter(new.*) AS mainshedule_inserter;
-
-
---
--- Name: mainshedule update_mainshedule; Type: RULE; Schema: public; Owner: postgres
---
 
 CREATE RULE update_mainshedule AS
     ON UPDATE TO public.mainshedule DO INSTEAD  SELECT public.mainshedule_updater(old.*, new.*) AS mainshedule_updater;
 
-
---
--- Name: tickets triggerdelete_tickets; Type: TRIGGER; Schema: public; Owner: postgres
---
-
 CREATE TRIGGER triggerdelete_tickets AFTER DELETE ON public.tickets FOR EACH ROW EXECUTE FUNCTION public.checkticketsdelete();
-
-
---
--- Name: tickets triggerinsert_tickets; Type: TRIGGER; Schema: public; Owner: postgres
---
 
 CREATE TRIGGER triggerinsert_tickets AFTER INSERT ON public.tickets FOR EACH ROW EXECUTE FUNCTION public.checkticketsinsert();
 
-
---
--- Name: tickets triggerupdate_tickets; Type: TRIGGER; Schema: public; Owner: postgres
---
-
 CREATE TRIGGER triggerupdate_tickets AFTER UPDATE ON public.tickets FOR EACH ROW EXECUTE FUNCTION public.checkticketsupdate();
-
-
---
--- Name: carriages fk_carriages_trains; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.carriages
     ADD CONSTRAINT fk_carriages_trains FOREIGN KEY (train) REFERENCES public.trains(trainid);
 
-
---
--- Name: routesshedule fk_routesshedule_arrival_stations; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.routesshedule
     ADD CONSTRAINT fk_routesshedule_arrival_stations FOREIGN KEY (arrivalstation) REFERENCES public.stations(stationid);
-
-
---
--- Name: routesshedule fk_routesshedule_departure_stations; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.routesshedule
     ADD CONSTRAINT fk_routesshedule_departure_stations FOREIGN KEY (departurestation) REFERENCES public.stations(stationid);
 
-
---
--- Name: routesshedule fk_routesshedule_trains; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.routesshedule
     ADD CONSTRAINT fk_routesshedule_trains FOREIGN KEY (train) REFERENCES public.trains(trainid);
-
-
---
--- Name: tickets fk_tickets_carriages; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.tickets
     ADD CONSTRAINT fk_tickets_carriages FOREIGN KEY (carriage) REFERENCES public.carriages(carriageid);
 
-
---
--- Name: tickets fk_tickets_passengers; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.tickets
     ADD CONSTRAINT fk_tickets_passengers FOREIGN KEY (passenger) REFERENCES public.passengers(passengerid);
-
-
---
--- Name: tickets fk_tickets_routesshedule; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
 
 ALTER TABLE ONLY public.tickets
     ADD CONSTRAINT fk_tickets_routesshedule FOREIGN KEY (route) REFERENCES public.routesshedule(routeid);
 
-
---
--- Name: tickets fk_tickets_tarrif; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.tickets
     ADD CONSTRAINT fk_tickets_tarrif FOREIGN KEY (tarrif) REFERENCES public.tarrif(tarrifid);
-
-
---
--- Name: TABLE routesshedule; Type: ACL; Schema: public; Owner: postgres
---
 
 GRANT SELECT ON TABLE public.routesshedule TO user_group;
 GRANT ALL ON TABLE public.routesshedule TO admin_group;
 
-
---
--- Name: TABLE stations; Type: ACL; Schema: public; Owner: postgres
---
-
 GRANT SELECT ON TABLE public.stations TO user_group;
 GRANT ALL ON TABLE public.stations TO admin_group;
-
-
---
--- Name: TABLE trains; Type: ACL; Schema: public; Owner: postgres
---
 
 GRANT SELECT ON TABLE public.trains TO user_group;
 GRANT ALL ON TABLE public.trains TO admin_group;
 
-
---
--- Name: TABLE mainshedule; Type: ACL; Schema: public; Owner: postgres
---
-
 GRANT ALL ON TABLE public.mainshedule TO admin_group;
 GRANT SELECT ON TABLE public.mainshedule TO user_group;
-
-
---
--- Name: TABLE carriages; Type: ACL; Schema: public; Owner: postgres
---
 
 GRANT SELECT ON TABLE public.carriages TO user_group;
 GRANT ALL ON TABLE public.carriages TO admin_group;
 
-
---
--- Name: COLUMN carriages.reservedseats; Type: ACL; Schema: public; Owner: postgres
---
-
 GRANT UPDATE(reservedseats) ON TABLE public.carriages TO user_group;
-
-
---
--- Name: COLUMN carriages.carriagestate; Type: ACL; Schema: public; Owner: postgres
---
 
 GRANT UPDATE(carriagestate) ON TABLE public.carriages TO user_group;
 
-
---
--- Name: TABLE availableroutes; Type: ACL; Schema: public; Owner: postgres
---
-
 GRANT ALL ON TABLE public.availableroutes TO admin_group;
 GRANT SELECT ON TABLE public.availableroutes TO user_group;
-
-
---
--- Name: TABLE passengers; Type: ACL; Schema: public; Owner: postgres
---
 
 GRANT SELECT,INSERT,UPDATE ON TABLE public.passengers TO user_group;
 GRANT ALL ON TABLE public.passengers TO admin_group;
 
 
---
--- Name: SEQUENCE passengers_passengerid_seq; Type: ACL; Schema: public; Owner: postgres
---
-
 GRANT SELECT,USAGE ON SEQUENCE public.passengers_passengerid_seq TO user_group;
 
-
---
--- Name: TABLE tarrif; Type: ACL; Schema: public; Owner: postgres
---
 
 GRANT SELECT ON TABLE public.tarrif TO user_group;
 GRANT ALL ON TABLE public.tarrif TO admin_group;
 
 
---
--- Name: TABLE tickets; Type: ACL; Schema: public; Owner: postgres
---
-
 GRANT SELECT,INSERT,UPDATE ON TABLE public.tickets TO user_group;
 GRANT ALL ON TABLE public.tickets TO admin_group;
 
-
---
--- Name: SEQUENCE tickets_ticketid_seq; Type: ACL; Schema: public; Owner: postgres
---
-
 GRANT SELECT,USAGE ON SEQUENCE public.tickets_ticketid_seq TO user_group;
 
-
---
--- PostgreSQL database dump complete
---
-
---
--- Database "postgres" dump
---
-
 \connect postgres
-
---
--- PostgreSQL database dump
---
 
 -- Dumped from database version 17.0 (Debian 17.0-1.pgdg120+1)
 -- Dumped by pg_dump version 17.0 (Debian 17.0-1.pgdg120+1)
@@ -2066,12 +1471,3 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- PostgreSQL database dump complete
---
-
---
--- PostgreSQL database cluster dump complete
---
-
