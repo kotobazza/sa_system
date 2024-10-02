@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1250</width>
+    <height>554</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1250</width>
+    <height>554</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1250</width>
+    <height>554</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1231</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>1231</width>
+      <height>71</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1231</width>
+      <height>71</height>
+     </size>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QFrame" name="frame">
+       <property name="maximumSize">
+        <size>
+         <width>360</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Вы работаете в системе под пользователем: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="userName">
+          <property name="text">
+           <string>USERNAME</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item alignment="Qt::AlignRight">
+      <widget class="QPushButton" name="logOutButton">
+       <property name="text">
+        <string>Выйти</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>1001</width>
+      <height>96</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Доступ к таблицам разграничен для разных пользователей. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="title">
+     <string>Таблицы базы данных</string>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;С этими таблицами могут работать любые пользователи, прошедшие процедуру авторизации&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="title">
+        <string>Пользователи</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QPushButton" name="tickets">
+          <property name="text">
+           <string>Билеты</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="passengers">
+          <property name="text">
+           <string>Пользователи</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Любое изменение этих таблиц возможно только при авторизации под группой &amp;quot;Администраторы&amp;quot;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="title">
+        <string>Администраторы</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QPushButton" name="carriages">
+          <property name="text">
+           <string>Вагоны</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="routes">
+          <property name="text">
+           <string>Рейсы</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="trains">
+          <property name="text">
+           <string>Поезда</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="stations">
+          <property name="text">
+           <string>Станции</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="tarrifs">
+          <property name="text">
+           <string>Тарифы</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_4">
+    <property name="geometry">
+     <rect>
+      <x>1020</x>
+      <y>70</y>
+      <width>211</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Функциональные таблицы</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QPushButton" name="mainShedule">
+       <property name="text">
+        <string>Главное расписание</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="activeRoutes">
+       <property name="text">
+        <string>Активные маршруты</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="incompleteTrains">
+       <property name="text">
+        <string>Неполные поезда</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="carriagesOccupancy">
+       <property name="text">
+        <string>Заполненность вагонов</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="averageTicketsCost">
+       <property name="text">
+        <string>Средняя цена билетов</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="somestatistics2">
+       <property name="text">
+        <string>Сколько билетов
+заказал каждый пассажир</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="somestatistics1">
+       <property name="text">
+        <string>Количество заказанных
+билетов по тарифам(требует отдельный вид таблиц)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="superCost">
+       <property name="text">
+        <string>Super Cost</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ticketsIndexing">
+       <property name="text">
+        <string>Проиндексировать билеты</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="createRoute">
+       <property name="text">
+        <string>Создать маршрут</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="place">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>1000</width>
+      <height>340</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1250</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
