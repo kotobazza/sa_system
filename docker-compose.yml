@@ -3,7 +3,7 @@ services:
     image: postgres:latest
     container_name: postgres-sa-system
     environment:
-      POSTGRES_PASSWORD: password 
+      POSTGRES_PASSWORD: postgres 
     ports:
       - "5432:5432" 
     networks:
